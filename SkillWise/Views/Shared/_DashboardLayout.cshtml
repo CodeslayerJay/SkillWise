@@ -1,10 +1,9 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SkillWise</title>
+    <title>Dashboard - SkillWise</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -20,19 +19,28 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-   
-    <div class="container" style="padding: 50px 20px;">
-        <partial name="_CookieConsentPartial" />
+    <div class="navbar-container">
+        <div class="option option-left">
+            @RenderSection("NavOptions", required: false)
+        </div>
+        <div class="title">
+            @ViewData["Title"]
+        </div>
+        <div class="option option-right">
+            <a asp-controller="Account" asp-action="Details">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+
+
+
+    </div>
+    <div class="container" style="padding-top: 90px;">
+        
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - SkillWise - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

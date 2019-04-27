@@ -1,8 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col-md-4 block">
+        <h3>Welcome!</h3>
+        <hr/>
+        <p>
+            Feel free to create a new account <br />
+            and get started today!
+        </p>
+        <a asp-controller="Account" asp-action="SignUp" class="btn btn-lg btn-block btn-primary">Sign Up!</a>
+        <a asp-controller="Account" asp-action="SignIn" class="btn btn-lg btn-block">or sign in here.</a>
+    </div>
+    <div class="col-md-6 offset-lg-1 block">
+        <h3>Why SkillWise?</h3>
+        <hr />
+        <p>
+            Learning something new doesn't have to be difficult. Once you figure out
+            the best way to learn for you, you can learn anything by putting in the time.
+            It is said that to become a master at anything you need to invest 10,000 hours.
+            With the help of SkillWise, you can organize and plan a learning path best
+            suited to your learning strengths.
+        </p>
+    </div>
 </div>

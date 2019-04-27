@@ -1,0 +1,75 @@
+﻿@model Skill
+@{
+    ViewData["Title"] = @Model.Title;
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@section NavOptions {
+    <a asp-controller="Skill" asp-action="View" asp-route-id="@Model.SkillId">&larr;</a>
+}
+
+<h1 class="text-center pt-3 pb-2">@Model.Title</h1>
+
+<form asp-controller="Skill" asp-action="UpdateDetails" method="post">
+    <div class="block row col-lg-6 m-auto">
+        <input type="hidden" name="SkillId" value="@Model.SkillId" />
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Title"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Title" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Description"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="IsPublic"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="IsPublic" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Experience"></label>
+            </div>
+            <div class="col-sm-12">
+                <select asp-for="Experience" class="form-control">
+                    <option value="Student">Student</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Expert">Expert</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row pt-2 col-12">
+
+            <div class="col-lg-4 offset-lg-2">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Update</button>
+            </div>
+            <div class="col-lg-4">
+                <a asp-controller="Skill" asp-action="View" asp-route-id="@Model.SkillId" class="btn btn-light btn-lg btn-block">Cancel</a>
+            </div>
+        </div>
+
+        <hr/>
+        <div class="row form-group col-12">
+            <a asp-controller="Skill" asp-action="ConfirmDelete" asp-route-id="@Model.SkillId" class="btn btn-outline-danger">Delete Skill</a>
+        </div>
+    </div>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

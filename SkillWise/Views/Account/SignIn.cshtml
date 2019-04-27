@@ -1,0 +1,56 @@
+﻿@using SkillWise.Models.ViewModels
+@model SignInViewModel
+@{
+    ViewData["Title"] = "Sign In";
+    
+}
+<h1 class="text-center">Sign In</h1>
+<br />
+<form asp-controller="Account" asp-action="SignIn" method="post">
+    <div class="block row col-lg-6 m-auto">
+
+        @Html.ValidationSummary()
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Email"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Password"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Password" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row pt-2 col-12">
+
+            <div class="col-lg-4 offset-lg-2">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+            </div>
+            <div class="col-lg-4">
+                <a href="/" class="btn btn-light btn-lg btn-block">Cancel</a>
+            </div>
+        </div>
+
+
+        <hr />
+        <div class="form-group row col-12 mt-3">
+            <div class="col-lg-6">
+                <a asp-controller="Account" asp-action="SignUp">Create a new account here.</a>
+            </div>
+        </div>
+    </div>  
+</form>
+
+<partial name="_validationScriptsPartial" />

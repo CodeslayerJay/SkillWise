@@ -1,0 +1,80 @@
+﻿@model SkillTask
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@section NavOptions {
+    <a asp-controller="Skill" asp-action="View" asp-route-id="@ViewData["SkillId"]">&larr;</a>
+}
+
+<h1 class="text-center">Add Task</h1>
+<br />
+<form asp-controller="SkillTask" asp-action="Create" method="post">
+    <div class="block row col-lg-6 m-auto">
+        <input type="hidden" name="SkillId" value="@ViewData["SkillId"]" />
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Task"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Task" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Task" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Note"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Note" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="IsFundamental"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="IsFundamental" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="IsPriority"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="IsPriority" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="RepeatOptions"></label>
+            </div>
+            <div class="col-sm-12">
+                <select asp-for="RepeatOptions" class="form-control">
+                    <option value="None" selected="selected">None</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row pt-2 col-12">
+
+            <div class="col-lg-4 offset-lg-2">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Add Task</button>
+            </div>
+            <div class="col-lg-4">
+                <a asp-controller="Skill" asp-action="View" asp-route-id="@ViewData["SkillId"]" class="btn btn-light btn-lg btn-block">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

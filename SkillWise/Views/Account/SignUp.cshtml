@@ -1,0 +1,78 @@
+﻿@using SkillWise.Models.ViewModels
+@model SignUpViewModel
+
+@{ 
+    ViewData["Title"] = "Sign Up";
+}
+
+<h1 class="text-center">Sign Up</h1>
+<br/>
+<form asp-controller="Account" asp-action="SignUp" method="post">
+    <div class="block row col-lg-6 m-auto">
+        
+        @Html.ValidationSummary()
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="FullName"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="FullName" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Email"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Email"  class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Password"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Password" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="ConfirmPassword"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="ConfirmPassword" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-2 col-12">
+
+            <div class="col-lg-4 offset-lg-2">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+            </div>
+            <div class="col-lg-4">
+                <a href="/" class="btn btn-light btn-lg btn-block">Cancel</a>
+            </div>
+        </div>
+
+
+        <hr />
+        <div class="form-group row col-12 mt-4">
+            <div class="col-sm-6">
+                <a asp-controller="Account" asp-action="SignIn">Sign In to your account here.</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

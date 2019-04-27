@@ -1,0 +1,22 @@
+﻿@model  IEnumerable<Skill>
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_DashboardLayout";
+}
+
+@section NavOptions {
+<div class="option option-left">
+    <a asp-controller="Skill" asp-action="Create">New</a>
+</div>
+}
+
+@if( Model.Any())
+{
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a asp-controller="Skill" asp-action="View" asp-route-id="@item.SkillId">@item.Title</a></li>
+    }
+</ul>
+}
+

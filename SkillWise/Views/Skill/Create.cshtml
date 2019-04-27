@@ -1,0 +1,70 @@
+﻿@model Skill
+@{
+    ViewData["Title"] = "Start a new skill";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@section NavOptions {
+    <a asp-controller="Dashboard" asp-action="Index">&larr;</a>
+}
+
+<h1 class="text-center">Start a new skill</h1>
+<br />
+<form asp-controller="Skill" asp-action="Create" method="post">
+    <div class="block row col-lg-6 m-auto">
+
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Title"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Title" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Description"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="col-sm-12">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="IsPublic"></label>
+            </div>
+            <div class="col-sm-12">
+                <input asp-for="IsPublic" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row col-12">
+            <div class="col-sm-12">
+                <label asp-for="Experience"></label>
+            </div>
+            <div class="col-sm-12">
+                <select asp-for="Experience" class="form-control">
+                    <option value="Student">Student</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Expert">Expert</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row pt-2 col-12">
+
+            <div class="col-lg-4 offset-lg-2">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Start</button>
+            </div>
+            <div class="col-lg-4">
+                <a href="/" class="btn btn-light btn-lg btn-block">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

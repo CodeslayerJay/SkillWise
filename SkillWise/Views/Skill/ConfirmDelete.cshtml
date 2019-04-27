@@ -1,0 +1,36 @@
+﻿@model Skill
+@{
+    ViewData["Title"] = "Confirm Delete";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@section NavOptions {
+    <a asp-controller="Skill" asp-action="View" asp-route-id="@Model.SkillId">&larr;</a>
+}
+
+<h1 class="text-center pt-5 pb-3">Do you really want to delete?</h1>
+
+<form asp-controller="Skill" asp-action="Delete" method="post">
+    <input type="hidden" name="SkillId" value="@Model.SkillId" />
+    <div class="row col-6 block m-auto">
+        <div class="form-group row col-lg-12">
+            <div class="col-lg-12">
+                <h4 class="text-center">@Model.Title</h4>
+            </div>
+            <div class="col-lg-12">
+                <p class="text-danger text-center">You cannot reverse after deleting!</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="form-group row col-lg-12">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-danger">Confirm delete</button>
+            </div>
+            <div class="col-sm-4">
+                <a asp-controller="Skill" asp-action="View" asp-route-id="@Model.SkillId" class="btn">Cancel</a>
+            </div>
+
+        </div>
+    </div>
+</form>
+

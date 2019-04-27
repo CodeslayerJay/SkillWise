@@ -1,0 +1,49 @@
+﻿@model Skill
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@section NavOptions {
+    <a asp-controller="Dashboard" asp-action="Index">&larr;</a>
+}
+
+    <div class="row col-md-8 block m-auto">
+        <div class="col-12 p-5">
+            <h1 class="text-center"><i class="fas fa-clock"></i> @ViewData["SumOfHours"] <br> hours logged</h1>
+        </div>
+        <hr/>
+        <div class="col-12">
+            <ul class="list-options">
+                <li class="list-options-item"><a asp-controller="SkillHour" asp-action="LogHours" asp-route-id="@Model.SkillId" class="btn btn-primary">Log Hours</a></li>
+                <li class="list-options-item"><a asp-controller="SkillTask" asp-action="Create" asp-route-id="@Model.SkillId" class="btn btn-info">New Task</a></li>
+
+                <li class="list-options-item float-right"><a asp-controller="Skill" asp-action="Details" asp-route-id="@Model.SkillId" class="btn btn-outline-info">Details</a></li>
+
+            </ul>
+        </div>  
+    </div>
+
+   <br />
+    
+        @if (Model.SkillTasks.Any())
+        {
+
+        <ul class="list-group row col-md-8 m-auto p-1">
+            @foreach (var task in Model.SkillTasks)
+            {
+                <a class="list-group-item list-group-item-action" asp-controller="SkillTask" asp-action="Details" asp-route-id="@task.SkillTaskId">
+                    @if (task.IsComplete)
+                    {
+
+                        <h5 style="text-decoration: line-through;">@task.Task</h5>                    }
+                    else
+                    {
+                        <h5>@task.Task</h5>
+                    }
+                    <span class="float-right">&rarr;</span>
+                </a>
+            }
+        </ul>
+        }
+    
