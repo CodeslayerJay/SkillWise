@@ -10,40 +10,86 @@
 
     <div class="row col-md-8 block m-auto">
         <div class="col-12 p-5">
-            <h1 class="text-center"><i class="fas fa-clock"></i> @ViewData["SumOfHours"] <br> hours logged</h1>
+            <h1 class="text-center">
+                <span style="display: block; font-size: 2.3em;">
+
+                    <i class="fas fa-clock"></i><br/>@ViewData["SumOfHours"]
+                </span> 
+                <span class="text-muted">HOURS</span>
+            </h1>
         </div>
-        <hr/>
+       
         <div class="col-12">
+            <hr/>
             <ul class="list-options">
-                <li class="list-options-item"><a asp-controller="SkillHour" asp-action="LogHours" asp-route-id="@Model.SkillId" class="btn btn-primary">Log Hours</a></li>
-                <li class="list-options-item"><a asp-controller="SkillTask" asp-action="Create" asp-route-id="@Model.SkillId" class="btn btn-info">New Task</a></li>
+                <li class="list-options-item float-right"><a asp-controller="SkillHour" asp-action="LogHours" asp-route-id="@Model.SkillId" class="btn btn-outline-primary">Log Hours</a></li>
+                
 
                 <li class="list-options-item float-right"><a asp-controller="Skill" asp-action="Details" asp-route-id="@Model.SkillId" class="btn btn-outline-info">Details</a></li>
 
             </ul>
         </div>  
     </div>
+<br/><br/>
+   
+   <div class="row col-md-8 m-auto p-0 pb-5">
+       @if (Model.SkillTasks.Any())
+       {
+           <div class="row col-md-12 mb-2">
+               <div class="col-9">
+                   <h4 class="text-muted">My Path</h4>
+               </div>
+               <div class="col-3 float-right">
+                   <a asp-controller="SkillTask" asp-action="Create" asp-route-id="@Model.SkillId" class="btn btn-info">New Task</a>
+               </div>
+           </div>
+           <div class="row col-12">
+               <div class="list-group col-12">
+                   @foreach (var task in Model.SkillTasks)
+                   {
 
-   <br />
-    
-        @if (Model.SkillTasks.Any())
-        {
+                   <a class="list-group-item list-group-item-action" asp-controller="SkillTask" asp-action="Details" asp-route-id="@task.SkillTaskId">
+                       @if (task.IsComplete)
+                       {
+                           <i class="far fa-check-circle text-muted"></i>
+                           <span style="text-decoration: line-through;">@task.Task</span>
+                       }
+                       else
+                       {
+                           if (task.IsPriority)
+                           {
+                               <i class="far fa-star text-muted"></i>
+                           }
+                           else
+                           {
+                               <span style="padding: 0 12px"></span> // Give a little spacing
+                           }
 
-        <ul class="list-group row col-md-8 m-auto p-1">
-            @foreach (var task in Model.SkillTasks)
-            {
-                <a class="list-group-item list-group-item-action" asp-controller="SkillTask" asp-action="Details" asp-route-id="@task.SkillTaskId">
-                    @if (task.IsComplete)
-                    {
+                           // Add color if task is fundamental
+                           if (task.IsFundamental)
+                           {
+                               <span class="text-primary">@task.Task</span>
+                           }
+                           else
+                           {
+                               <span>@task.Task</span>
+                           }
 
-                        <h5 style="text-decoration: line-through;">@task.Task</h5>                    }
-                    else
-                    {
-                        <h5>@task.Task</h5>
-                    }
-                    <span class="float-right">&rarr;</span>
-                </a>
-            }
-        </ul>
-        }
-    
+
+
+                       }
+                       <span class="float-right">&rarr;</span>
+                       @if(task.RepeatOptions.ToString() != "None")
+                       {
+                       <br />
+                       <span class="text-danger" style="font-size: .8em; padding-left: 22px;">
+                           <i class="fas fa-redo-alt"></i>
+                           @task.RepeatOptions
+                       </span>
+                       }
+                   </a>
+                   }
+               </div>
+           </div>
+       }
+   </div>
